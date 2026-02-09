@@ -8,7 +8,7 @@
     <style>
         :root { --pink-bg: #fdf0f0; --heart-red: #ff4d6d; --text-color: #5d4037; }
         body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(180deg, #fff 0%, var(--pink-bg) 100%); font-family: 'Quicksand', sans-serif; color: var(--text-color); }
-        .card { width: 85%; max-width: 380px; background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 25px; box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3); }
+        .card { width: 85%; max-width: 380px; background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 25px; box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3); text-align: left; }
         h2 { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #d63384; margin: 0 0 1rem; }
         .tree { text-align: center; font-size: 4rem; margin: 1.5rem 0; }
         .timer { display: flex; justify-content: space-between; border-top: 2px solid #eee; padding-top: 15px; }
@@ -22,28 +22,33 @@
         <h2>Para el amor de mi vida:</h2>
         <p>Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo, más te amo.</p>
         <div class="tree">🌳💕</div>
-        <p style="color:#888; font-size: 0.9rem;">Mi amor por ti comenzó hace...</p>
+        <p style="color:#888; font-size: 0.9rem; margin-bottom: 10px;">Mi amor por ti comenzó hace...</p>
         <div class="timer">
             <div class="unit"><span id="days">0</span><label>Días</label></div>
             <div class="unit"><span id="hours">0</span><label>Horas</label></div>
-            <div class="unit"><span id="minutes">0</span><label>Min</label></div>
-            <div class="unit"><span id="seconds">0</span><label>Seg</label></div>
+            <div class="unit"><span id="mins">0</span><label>Min</label></div>
+            <div class="unit"><span id="secs">0</span><label>Seg</label></div>
         </div>
     </div>
     <script>
-        function update() {
-            // Fecha: 26 de agosto de 2024
-            const start = new Date(2024, 7, 26).getTime(); 
+        function updateCounter() {
+            // Fecha: 26 de agosto de 2024 (En JS el mes 7 es agosto)
+            const startDate = new Date(2024, 7, 26, 0, 0, 0).getTime();
             const now = new Date().getTime();
-            const diff = now - start;
+            const diff = now - startDate;
 
-            document.getElementById("days").innerText = Math.floor(diff / 86400000);
-            document.getElementById("hours").innerText = Math.floor((diff % 86400000) / 3600000);
-            document.getElementById("minutes").innerText = Math.floor((diff % 3600000) / 60000);
-            document.getElementById("seconds").innerText = Math.floor((diff % 60000) / 1000);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = d;
+            document.getElementById("hours").innerHTML = h;
+            document.getElementById("mins").innerHTML = m;
+            document.getElementById("secs").innerHTML = s;
         }
-        setInterval(update, 1000);
-        update();
+        setInterval(updateCounter, 1000);
+        updateCounter();
     </script>
 </body>
 </html>
