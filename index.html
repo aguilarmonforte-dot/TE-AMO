@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el amor de mi vida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-bg: #fdf0f0;
+            --heart-red: #ff4d6d;
+            --text-color: #5d4037;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #fff 0%, var(--pink-bg) 100%);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-color);
+        }
+
+        .card {
+            width: 85%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+            text-align: left;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-top: 0;
+            color: #d63384;
+        }
+
+        .message {
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tree-container {
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .counter-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #888;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-between;
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+        }
+
+        .timer-unit {
+            text-align: center;
+        }
+
+        .timer-unit span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--heart-red);
+        }
+
+        .timer-unit label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Para el amor de mi vida:</h2>
+        
+        <div class="message">
+            Si pudiera elegir un lugar seguro, sería a tu lado. 
+            Cuanto más tiempo estoy contigo, más te amo.<br><br>
+            — <strong>¡I Love You!</strong>
+        </div>
+
+        <div class="tree-container">🌳💕</div>
+
+        <div class="counter-title">Mi amor por ti comenzó hace...</div>
+        <div class="timer" id="countdown">
+            <div class="timer-unit"><span id="days">0</span><label>días</label></div>
+            <div class="timer-unit"><span id="hours">0</span><label>horas</label></div>
+            <div class="timer-unit"><span id="minutes">0</span><label>min</label></div>
+            <div class="timer-unit"><span id="seconds">0</span><label>seg</label></div>
+        </div>
+    </div>
+
+    <script>
+        // Fecha configurada para el 26 de agosto de 2024
+        const startDate = new Date("2024-08-26T00:00:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const difference = now - startDate;
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d;
+            document.getElementById("hours").innerText = h;
+            document.getElementById("minutes").innerText = m;
+            document.getElementById("seconds").innerText = s;
+        }
